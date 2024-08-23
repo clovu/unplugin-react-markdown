@@ -125,7 +125,7 @@
   "dependencies": {
     "@rollup/pluginutils": "^5.1.0",
     "gray-matter": "^4.0.3",
-    "jsxify-html": "^0.2.2",
+    "jsxify-html": "^0.2.3",
     "unplugin": "^1.12.2"
   },
   "devDependencies": {
