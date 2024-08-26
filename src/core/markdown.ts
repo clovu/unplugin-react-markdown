@@ -12,7 +12,7 @@ import MarkdownIt from 'markdown-it'
 import type { TransformResult } from 'unplugin'
 import { transform } from 'esbuild'
 
-import { convert } from 'jsxify-html'
+import { JsxifyHtml } from 'jsxify-html'
 import matter from 'gray-matter'
 import type { MarkdownEnv, Options } from '../types'
 
@@ -20,6 +20,11 @@ export async function createMarkdown(options: Options) {
   const markdown = MarkdownIt({
     html: true,
     ...options.markdownItOptions,
+  })
+
+  const jsxifier = new JsxifyHtml({
+    xml: true,
+    preservePreTags: true,
   })
 
   await options.markdownItSetup?.(markdown)
@@ -34,7 +39,7 @@ export async function createMarkdown(options: Options) {
     const { content, data } = matter(raw)
     let html = markdown.render(content, env)
 
-    html = convert(html) ?? ''
+    html = jsxifier.convert(html) ?? ''
 
     raw = transgorms?.after?.(html, id) ?? raw
 
