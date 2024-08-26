@@ -51,7 +51,7 @@ export async function createMarkdown(options: Options) {
       imports,
       `export default () =>`,
       html,
-      `export const forntmatter = ${JSON.stringify(data)}`,
+      `export const frontmatter = ${JSON.stringify(data)}`,
     ].join('\n')
 
     const { code: result } = await transform(code, {
