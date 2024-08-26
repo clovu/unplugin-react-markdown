@@ -18,8 +18,8 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       jsxify-html:
-        specifier: ^0.2.3
-        version: 0.2.3
+        specifier: ^0.2.4
+        version: 0.2.4
       unplugin:
         specifier: ^1.12.2
         version: 1.12.2
@@ -2206,8 +2206,8 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  jsxify-html@0.2.3:
-    resolution: {integrity: sha512-FttcAHjsFSGN44Z0tZO6o+AmNzZbxGlEZA6+ra3ApL1Jw/kk6vcUvN2gWzqTvpi7lEN/eTdsBnJmVQ89Ogj0CQ==}
+  jsxify-html@0.2.4:
+    resolution: {integrity: sha512-FZ6UrfrbNVGreGdnbadU+ybc7EDCGrs0wqwmpPEtMSbtumwDtzYLKfihh29haics2Sb9+DwRvY9pQjNiLRenjQ==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -5540,7 +5540,7 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  jsxify-html@0.2.3:
+  jsxify-html@0.2.4:
     dependencies:
       '@babel/generator': 8.0.0-alpha.12
       '@babel/types': 8.0.0-alpha.12
