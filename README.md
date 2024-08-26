@@ -4,9 +4,9 @@
 
 Compile Markdown to Vue component.
 
-- 📚 Use Markdown as Vue components.
-- 💚 Use Vue components in Markdown.
-- 🔌 Supports Vite, Webpack, Vue CLI and more, powered by unplugin.
+- 📚 Use Markdown as React components.
+- 💚 Use React components in Markdown.
+- 🔌 Supports Vite, Webpack and more, powered by unplugin.
 
 ## Install
 
