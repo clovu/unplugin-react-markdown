@@ -4,10 +4,8 @@ imports: |
   import App from './App'
 ---
 
-# hello
+# Hello World
 
-你好
+use react component
 
 <App />
-
-dsf

@@ -1,28 +1,17 @@
-# unplugin-starter
+# unplugin-react-markdown
 
-[![NPM version](https://img.shields.io/npm/v/unplugin-starter?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-starter)
+[![NPM version](https://img.shields.io/npm/v/unplugin-react-markdown?color=a1b858&label=)](https://www.npmjs.com/package/unplugin-react-markdown)
 
-Starter template for [unplugin](https://github.com/unjs/unplugin).
+Compile Markdown to Vue component.
 
-## Template Usage
-
-To use this template, clone it down using:
-
-```bash
-npx degit unplugin/unplugin-starter my-unplugin
-```
-
-And do a global replacement of `unplugin-starter` with your plugin name.
-
-Then you can start developing your unplugin 🔥
-
-To test your plugin, run: `pnpm run dev`
-To release a new version, run: `pnpm run release`
+- 📚 Use Markdown as Vue components.
+- 💚 Use Vue components in Markdown.
+- 🔌 Supports Vite, Webpack, Vue CLI and more, powered by unplugin.
 
 ## Install
 
 ```bash
-npm i unplugin-starter
+pnpm add unplugin-react-markdown
 ```
 
 <details>
@@ -30,94 +19,102 @@ npm i unplugin-starter
 
 ```ts
 // vite.config.ts
-import Starter from 'unplugin-starter/vite'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import Markdown from 'unplugin-react-markdown/vite'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    Starter({ /* options */ }),
-  ],
-})
-```
-
-Example: [`playground/`](./playground/)
-
-<br></details>
-
-<details>
-<summary>Rollup</summary><br>
-
-```ts
-// rollup.config.js
-import Starter from 'unplugin-starter/rollup'
-
-export default {
-  plugins: [
-    Starter({ /* options */ }),
-  ],
-}
-```
-
-<br></details>
-
-
-<details>
-<summary>Webpack</summary><br>
-
-```ts
-// webpack.config.js
-module.exports = {
-  /* ... */
-  plugins: [
-    require('unplugin-starter/webpack')({ /* options */ })
+    react({ include: [/\.md$/] }),
+    Markdown({}),
   ]
-}
-```
-
-<br></details>
-
-<details>
-<summary>Nuxt</summary><br>
-
-```ts
-// nuxt.config.js
-export default defineNuxtConfig({
-  modules: [
-    ['unplugin-starter/nuxt', { /* options */ }],
-  ],
 })
 ```
 
-> This module works for both Nuxt 2 and [Nuxt Vite](https://github.com/nuxt/vite)
+Example: [`examples/vite`](./examples/vite/)
 
 <br></details>
 
 <details>
-<summary>Vue CLI</summary><br>
+<summary>NextJS/Webpack</summary><br>
 
 ```ts
-// vue.config.js
-module.exports = {
-  configureWebpack: {
-    plugins: [
-      require('unplugin-starter/webpack')({ /* options */ }),
-    ],
+// next.config.mjs
+// @ts-check
+import Markdown from 'unplugin-react-markdown/webpack'
+import Shiki from '@shikijs/markdown-it'
+
+function parseMetaString(_metaString, _code, lang) {
+  return {
+    dataLanguage: lang,
+  }
+}
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config) => {
+    config.plugins.push(Markdown({
+      markdownItSetup: async (md) => {
+        md.use(await Shiki({
+          themes: {
+            light: 'vitesse-light',
+            dark: 'nord',
+          },
+          theme: {
+            colorReplacements: {
+              '#2e3440ff': '#282a2d',
+            },
+          },
+          meta: {
+            dataLanguage: 'java',
+          },
+          parseMetaString,
+        }))
+      },
+    }))
+    return config
   },
 }
+
+export default nextConfig
 ```
+
+Example: [`examples/nextjs`](./examples/nextjs/)
 
 <br></details>
 
-<details>
-<summary>esbuild</summary><br>
+## Import Markdown as React components
 
-```ts
-// esbuild.config.js
-import { build } from 'esbuild'
-import Starter from 'unplugin-starter/esbuild'
+```tsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 
-build({
-  plugins: [Starter()],
-})
+import './index.css'
+
+import Home, { forntmatter } from './index.md'
+
+console.log(forntmatter)
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Home />
+  </StrictMode>,
+)
 ```
 
-<br></details>
+## Use React Components inside Markdown
+
+```markdown
+---
+title: Hello World
+imports: |
+  import App from './App'
+---
+
+# Hello World
+
+use react component
+
+<App />
+```
