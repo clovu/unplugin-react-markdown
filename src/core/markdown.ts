@@ -7,13 +7,13 @@
  * @author: Clover
  * @create: 2024-08-22 16:30
  */
-import MarkdownIt from 'markdown-it'
-
-import type { TransformResult } from 'unplugin'
 import { transform } from 'esbuild'
 
-import { JsxifyHtml } from 'jsxify-html'
 import matter from 'gray-matter'
+import { JsxifyHtml } from 'jsxify-html'
+
+import MarkdownIt from 'markdown-it'
+import type { TransformResult } from 'unplugin'
 import type { MarkdownEnv, Options } from '../types'
 
 export async function createMarkdown(options: Options) {
@@ -25,6 +25,7 @@ export async function createMarkdown(options: Options) {
   const jsxifier = new JsxifyHtml({
     xml: true,
     preservePreTags: true,
+    htmlEntities: { level: 'html5', mode: 'specialChars' },
   })
 
   await options.markdownItSetup?.(markdown)
