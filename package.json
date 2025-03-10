@@ -5,13 +5,13 @@
   "packageManager": "pnpm@8.6.12",
   "description": "Compile Markdown to React component",
   "license": "MIT",
-  "homepage": "https://github.com/clover-you/unplugin-react-markdown#readme",
+  "homepage": "https://github.com/clovu/unplugin-react-markdown#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/clover-you/unplugin-react-markdown.git"
+    "url": "git+https://github.com/clovu/unplugin-react-markdown.git"
   },
   "bugs": {
-    "url": "https://github.com/clover-you/unplugin-react-markdown/issues"
+    "url": "https://github.com/clovu/unplugin-react-markdown/issues"
   },
   "keywords": [
     "unplugin",
